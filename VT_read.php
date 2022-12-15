@@ -21,8 +21,23 @@ flock($file, LOCK_UN);
 fclose($file);
 
 // `$str`に全てのデータ（タグに入った状態）がまとまるので，HTML内の任意の場所に表示する．
-
-
+/*
+//画像取得
+$dsn = "mysql:host=localhost; dbname=xxx; charset=utf8";
+$username = "xxx";
+$password = "xxx";
+$id = rand(1, 5);
+try {
+    $dbh = new PDO($dsn, $username, $password);
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+    $sql = "SELECT * FROM images WHERE id = :id";
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+    $image = $stmt->fetch();
+*/
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +66,11 @@ fclose($file);
     </table>
   </fieldset>
 
+<!--
+  <h1>画像表示</h1>
+  <img src="images/<?php echo $image['name']; ?>" width="300" height="300">
+  <a href="upload.php">画像アップロード</a>
+-->
 </body>
 
 </html>
